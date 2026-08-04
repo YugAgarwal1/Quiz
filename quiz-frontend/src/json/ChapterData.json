@@ -1,0 +1,18 @@
+[
+    {
+        "Subject": "Adv Java",
+        "SubjectID": "1",
+        "Chapters": [
+            {
+                "ChapterNumber": 1,
+                "ChapterName": "Introduction to Java",
+                "ChapterDescription": "This chapter covers the Introduction to Java"
+            },
+            {
+                "ChapterNumber": 2,
+                "ChapterName": "Java Basics",
+                "ChapterDescription": "This chapter covers the basics of Java"
+            }
+        ]
+    }
+]

@@ -1,0 +1,710 @@
+[
+    {
+        "SubjectID": "1",
+        "Chapters": [
+            {
+                "ChapterNumber": 1,
+                "Difficulty": [
+                    {
+                        "Level": "Easy",
+                        "Questions": [
+                            {
+                                "id": 1,
+                                "question": "What is JVM?",
+                                "difficulty": "Easy",
+                                "options": [
+                                    "Java Virtual Machine",
+                                    "Java Variable Method",
+                                    "Joint Virtual Memory",
+                                    "Java Verified Mode"
+                                ],
+                                "answer": "Java Virtual Machine",
+                                "solution": "JVM is responsible for executing Java bytecode."
+                            },
+                            {
+                                "id": 2,
+                                "question": "Which keyword is used for inheritance?",
+                                "difficulty": "Easy",
+                                "options": [
+                                    "implements",
+                                    "extends",
+                                    "super",
+                                    "this"
+                                ],
+                                "answer": "extends",
+                                "solution": "The 'extends' keyword is used to inherit a class."
+                            },
+                            {
+                                "id": 3,
+                                "question": "Which collection allows duplicates?",
+                                "difficulty": "Easy",
+                                "options": [
+                                    "Set",
+                                    "Map",
+                                    "List",
+                                    "TreeSet"
+                                ],
+                                "answer": "List",
+                                "solution": "List allows duplicate elements."
+                            },
+                            {
+                                "id": 4,
+                                "question": "Which package is used for JDBC?",
+                                "difficulty": "Easy",
+                                "options": [
+                                    "java.sql",
+                                    "java.io",
+                                    "java.util",
+                                    "java.net"
+                                ],
+                                "answer": "java.sql",
+                                "solution": "JDBC API is present in java.sql package."
+                            },
+                            {
+                                "id": 5,
+                                "question": "Which interface is used to create threads?",
+                                "difficulty": "Easy",
+                                "options": [
+                                    "Runnable",
+                                    "Serializable",
+                                    "Cloneable",
+                                    "Comparable"
+                                ],
+                                "answer": "Runnable",
+                                "solution": "Runnable interface is used to define thread tasks."
+                            },
+                            {
+                                "id": 6,
+                                "question": "Which keyword is used to stop inheritance?",
+                                "difficulty": "Easy",
+                                "options": [
+                                    "final",
+                                    "static",
+                                    "private",
+                                    "protected"
+                                ],
+                                "answer": "final",
+                                "solution": "Final class cannot be inherited."
+                            },
+                            {
+                                "id": 7,
+                                "question": "Which method starts a thread?",
+                                "difficulty": "Easy",
+                                "options": [
+                                    "run()",
+                                    "start()",
+                                    "execute()",
+                                    "init()"
+                                ],
+                                "answer": "start()",
+                                "solution": "start() method begins thread execution."
+                            },
+                            {
+                                "id": 8,
+                                "question": "Which exception is unchecked?",
+                                "difficulty": "Easy",
+                                "options": [
+                                    "IOException",
+                                    "SQLException",
+                                    "NullPointerException",
+                                    "FileNotFoundException"
+                                ],
+                                "answer": "NullPointerException",
+                                "solution": "Unchecked exceptions occur at runtime."
+                            },
+                            {
+                                "id": 9,
+                                "question": "Which class is synchronized?",
+                                "difficulty": "Easy",
+                                "options": [
+                                    "ArrayList",
+                                    "HashMap",
+                                    "Vector",
+                                    "HashSet"
+                                ],
+                                "answer": "Vector",
+                                "solution": "Vector is synchronized by default."
+                            },
+                            {
+                                "id": 10,
+                                "question": "Which driver is platform independent?",
+                                "difficulty": "Easy",
+                                "options": [
+                                    "Type 1",
+                                    "Type 2",
+                                    "Type 3",
+                                    "Type 4"
+                                ],
+                                "answer": "Type 4",
+                                "solution": "Type 4 driver is pure Java."
+                            },
+                            {
+                                "id": 11,
+                                "question": "Which method is used to close JDBC connection?",
+                                "difficulty": "Easy",
+                                "options": [
+                                    "close()",
+                                    "end()",
+                                    "terminate()",
+                                    "finish()"
+                                ],
+                                "answer": "close()",
+                                "solution": "close() method closes database connection."
+                            },
+                            {
+                                "id": 12,
+                                "question": "Which keyword refers to current object?",
+                                "difficulty": "Easy",
+                                "options": [
+                                    "this",
+                                    "super",
+                                    "self",
+                                    "current"
+                                ],
+                                "answer": "this",
+                                "solution": "this refers to current object instance."
+                            },
+                            {
+                                "id": 13,
+                                "question": "Which keyword calls parent constructor?",
+                                "difficulty": "Easy",
+                                "options": [
+                                    "this()",
+                                    "super()",
+                                    "parent()",
+                                    "base()"
+                                ],
+                                "answer": "super()",
+                                "solution": "super() calls parent class constructor."
+                            },
+                            {
+                                "id": 14,
+                                "question": "Which method compares strings?",
+                                "difficulty": "Easy",
+                                "options": [
+                                    "equals()",
+                                    "compare()",
+                                    "==",
+                                    "check()"
+                                ],
+                                "answer": "equals()",
+                                "solution": "equals() compares string values."
+                            },
+                            {
+                                "id": 15,
+                                "question": "Which keyword handles exceptions?",
+                                "difficulty": "Easy",
+                                "options": [
+                                    "try",
+                                    "throw",
+                                    "throws",
+                                    "catch"
+                                ],
+                                "answer": "try",
+                                "solution": "try block is used to handle exceptions."
+                            },
+                            {
+                                "id": 16,
+                                "question": "Which block catches exceptions?",
+                                "difficulty": "Easy",
+                                "options": [
+                                    "try",
+                                    "catch",
+                                    "finally",
+                                    "throw"
+                                ],
+                                "answer": "catch",
+                                "solution": "catch block handles exception."
+                            },
+                            {
+                                "id": 17,
+                                "question": "Which block always executes?",
+                                "difficulty": "Easy",
+                                "options": [
+                                    "try",
+                                    "catch",
+                                    "finally",
+                                    "throw"
+                                ],
+                                "answer": "finally",
+                                "solution": "finally block always executes."
+                            },
+                            {
+                                "id": 18,
+                                "question": "Which class is used for file handling?",
+                                "difficulty": "Easy",
+                                "options": [
+                                    "File",
+                                    "Scanner",
+                                    "Reader",
+                                    "Writer"
+                                ],
+                                "answer": "File",
+                                "solution": "File class represents file path."
+                            },
+                            {
+                                "id": 19,
+                                "question": "Which stream reads data?",
+                                "difficulty": "Easy",
+                                "options": [
+                                    "InputStream",
+                                    "OutputStream",
+                                    "Writer",
+                                    "PrintStream"
+                                ],
+                                "answer": "InputStream",
+                                "solution": "InputStream reads data."
+                            },
+                            {
+                                "id": 20,
+                                "question": "Which stream writes data?",
+                                "difficulty": "Easy",
+                                "options": [
+                                    "InputStream",
+                                    "OutputStream",
+                                    "Reader",
+                                    "Scanner"
+                                ],
+                                "answer": "OutputStream",
+                                "solution": "OutputStream writes data."
+                            },
+                            {
+                                "id": 21,
+                                "question": "Which class is used for dynamic arrays?",
+                                "difficulty": "Easy",
+                                "options": [
+                                    "ArrayList",
+                                    "HashSet",
+                                    "TreeMap",
+                                    "Vector"
+                                ],
+                                "answer": "ArrayList",
+                                "solution": "ArrayList is resizable array."
+                            },
+                            {
+                                "id": 22,
+                                "question": "Which collection does not allow duplicates?",
+                                "difficulty": "Easy",
+                                "options": [
+                                    "List",
+                                    "Set",
+                                    "ArrayList",
+                                    "Vector"
+                                ],
+                                "answer": "Set",
+                                "solution": "Set does not allow duplicates."
+                            },
+                            {
+                                "id": 23,
+                                "question": "Which map stores key-value pairs?",
+                                "difficulty": "Easy",
+                                "options": [
+                                    "Map",
+                                    "Set",
+                                    "List",
+                                    "Queue"
+                                ],
+                                "answer": "Map",
+                                "solution": "Map stores key-value pairs."
+                            },
+                            {
+                                "id": 24,
+                                "question": "Which keyword creates object?",
+                                "difficulty": "Easy",
+                                "options": [
+                                    "new",
+                                    "create",
+                                    "init",
+                                    "make"
+                                ],
+                                "answer": "new",
+                                "solution": "new keyword creates objects."
+                            },
+                            {
+                                "id": 25,
+                                "question": "Which operator compares reference?",
+                                "difficulty": "Easy",
+                                "options": [
+                                    "==",
+                                    "equals()",
+                                    "!=",
+                                    "compareTo()"
+                                ],
+                                "answer": "==",
+                                "solution": "== compares memory reference."
+                            }
+                        ]
+                    },
+                    {
+                        "Level": "Medium",
+                        "Questions": []
+                    },
+                    {
+                        "Level": "Hard",
+                        "Questions": []
+                    }
+                ]
+            },
+            {
+                "ChapterNumber": 2,
+                "Difficulty": [
+                    {
+                        "Level": "Easy",
+                        "Questions": [
+                            {
+                                "id": 26,
+                                "question": "Which keyword is used for abstraction?",
+                                "difficulty": "Easy",
+                                "options": [
+                                    "abstract",
+                                    "interface",
+                                    "class",
+                                    "extends"
+                                ],
+                                "answer": "abstract",
+                                "solution": "abstract keyword defines abstract class."
+                            },
+                            {
+                                "id": 27,
+                                "question": "Which interface supports multiple inheritance?",
+                                "difficulty": "Easy",
+                                "options": [
+                                    "interface",
+                                    "class",
+                                    "abstract class",
+                                    "enum"
+                                ],
+                                "answer": "interface",
+                                "solution": "Interfaces allow multiple inheritance."
+                            },
+                            {
+                                "id": 28,
+                                "question": "Which method is entry point?",
+                                "difficulty": "Easy",
+                                "options": [
+                                    "main()",
+                                    "start()",
+                                    "init()",
+                                    "run()"
+                                ],
+                                "answer": "main()",
+                                "solution": "main() is entry point of Java program."
+                            },
+                            {
+                                "id": 29,
+                                "question": "Which keyword defines constant?",
+                                "difficulty": "Easy",
+                                "options": [
+                                    "final",
+                                    "const",
+                                    "static",
+                                    "immutable"
+                                ],
+                                "answer": "final",
+                                "solution": "final keyword creates constants."
+                            },
+                            {
+                                "id": 30,
+                                "question": "Which class handles input from user?",
+                                "difficulty": "Easy",
+                                "options": [
+                                    "Scanner",
+                                    "File",
+                                    "Reader",
+                                    "Writer"
+                                ],
+                                "answer": "Scanner",
+                                "solution": "Scanner reads user input."
+                            },
+                            {
+                                "id": 31,
+                                "question": "Which method prints output?",
+                                "difficulty": "Easy",
+                                "options": [
+                                    "print()",
+                                    "println()",
+                                    "echo()",
+                                    "write()"
+                                ],
+                                "answer": "println()",
+                                "solution": "println() prints output with newline."
+                            },
+                            {
+                                "id": 32,
+                                "question": "Which keyword is used for loops?",
+                                "difficulty": "Easy",
+                                "options": [
+                                    "loop",
+                                    "for",
+                                    "repeat",
+                                    "iterate"
+                                ],
+                                "answer": "for",
+                                "solution": "for loop is used for iteration."
+                            },
+                            {
+                                "id": 33,
+                                "question": "Which loop runs at least once?",
+                                "difficulty": "Easy",
+                                "options": [
+                                    "for",
+                                    "while",
+                                    "do-while",
+                                    "foreach"
+                                ],
+                                "answer": "do-while",
+                                "solution": "do-while executes at least once."
+                            },
+                            {
+                                "id": 34,
+                                "question": "Which keyword breaks loop?",
+                                "difficulty": "Easy",
+                                "options": [
+                                    "break",
+                                    "stop",
+                                    "exit",
+                                    "end"
+                                ],
+                                "answer": "break",
+                                "solution": "break exits loop immediately."
+                            },
+                            {
+                                "id": 35,
+                                "question": "Which keyword skips iteration?",
+                                "difficulty": "Easy",
+                                "options": [
+                                    "skip",
+                                    "continue",
+                                    "next",
+                                    "pass"
+                                ],
+                                "answer": "continue",
+                                "solution": "continue skips current iteration."
+                            },
+                            {
+                                "id": 36,
+                                "question": "Which package contains collections?",
+                                "difficulty": "Easy",
+                                "options": [
+                                    "java.util",
+                                    "java.io",
+                                    "java.sql",
+                                    "java.net"
+                                ],
+                                "answer": "java.util",
+                                "solution": "Collections framework is in java.util."
+                            },
+                            {
+                                "id": 37,
+                                "question": "Which method sorts list?",
+                                "difficulty": "Easy",
+                                "options": [
+                                    "sort()",
+                                    "order()",
+                                    "arrange()",
+                                    "filter()"
+                                ],
+                                "answer": "sort()",
+                                "solution": "sort() method sorts collections."
+                            },
+                            {
+                                "id": 38,
+                                "question": "Which class implements List?",
+                                "difficulty": "Easy",
+                                "options": [
+                                    "ArrayList",
+                                    "HashMap",
+                                    "HashSet",
+                                    "TreeMap"
+                                ],
+                                "answer": "ArrayList",
+                                "solution": "ArrayList implements List."
+                            },
+                            {
+                                "id": 39,
+                                "question": "Which class implements Map?",
+                                "difficulty": "Easy",
+                                "options": [
+                                    "HashMap",
+                                    "ArrayList",
+                                    "Vector",
+                                    "LinkedList"
+                                ],
+                                "answer": "HashMap",
+                                "solution": "HashMap implements Map."
+                            },
+                            {
+                                "id": 40,
+                                "question": "Which class implements Set?",
+                                "difficulty": "Easy",
+                                "options": [
+                                    "HashSet",
+                                    "ArrayList",
+                                    "Vector",
+                                    "TreeMap"
+                                ],
+                                "answer": "HashSet",
+                                "solution": "HashSet implements Set."
+                            },
+                            {
+                                "id": 41,
+                                "question": "Which keyword defines package?",
+                                "difficulty": "Easy",
+                                "options": [
+                                    "package",
+                                    "import",
+                                    "include",
+                                    "namespace"
+                                ],
+                                "answer": "package",
+                                "solution": "package keyword defines namespace."
+                            },
+                            {
+                                "id": 42,
+                                "question": "Which keyword imports package?",
+                                "difficulty": "Easy",
+                                "options": [
+                                    "import",
+                                    "include",
+                                    "use",
+                                    "require"
+                                ],
+                                "answer": "import",
+                                "solution": "import keyword includes packages."
+                            },
+                            {
+                                "id": 43,
+                                "question": "Which keyword handles multiple exceptions?",
+                                "difficulty": "Easy",
+                                "options": [
+                                    "catch",
+                                    "try",
+                                    "finally",
+                                    "throws"
+                                ],
+                                "answer": "catch",
+                                "solution": "Multiple catch blocks handle multiple exceptions."
+                            },
+                            {
+                                "id": 44,
+                                "question": "Which keyword throws exception?",
+                                "difficulty": "Easy",
+                                "options": [
+                                    "throw",
+                                    "throws",
+                                    "try",
+                                    "catch"
+                                ],
+                                "answer": "throw",
+                                "solution": "throw explicitly throws exception."
+                            },
+                            {
+                                "id": 45,
+                                "question": "Which keyword declares exception?",
+                                "difficulty": "Easy",
+                                "options": [
+                                    "throws",
+                                    "throw",
+                                    "catch",
+                                    "try"
+                                ],
+                                "answer": "throws",
+                                "solution": "throws declares exception in method signature."
+                            },
+                            {
+                                "id": 46,
+                                "question": "Which class is parent of all classes?",
+                                "difficulty": "Easy",
+                                "options": [
+                                    "Object",
+                                    "Class",
+                                    "Main",
+                                    "Base"
+                                ],
+                                "answer": "Object",
+                                "solution": "Object is root class in Java."
+                            },
+                            {
+                                "id": 47,
+                                "question": "Which method converts object to string?",
+                                "difficulty": "Easy",
+                                "options": [
+                                    "toString()",
+                                    "convert()",
+                                    "string()",
+                                    "parse()"
+                                ],
+                                "answer": "toString()",
+                                "solution": "toString() converts object to string."
+                            },
+                            {
+                                "id": 48,
+                                "question": "Which keyword is used for interface implementation?",
+                                "difficulty": "Easy",
+                                "options": [
+                                    "implements",
+                                    "extends",
+                                    "inherit",
+                                    "interface"
+                                ],
+                                "answer": "implements",
+                                "solution": "implements keyword is used for interfaces."
+                            },
+                            {
+                                "id": 49,
+                                "question": "Which keyword defines static method?",
+                                "difficulty": "Easy",
+                                "options": [
+                                    "static",
+                                    "final",
+                                    "const",
+                                    "public"
+                                ],
+                                "answer": "static",
+                                "solution": "static defines class-level methods."
+                            },
+                            {
+                                "id": 50,
+                                "question": "Which keyword restricts access?",
+                                "difficulty": "Easy",
+                                "options": [
+                                    "private",
+                                    "public",
+                                    "protected",
+                                    "all"
+                                ],
+                                "answer": "private",
+                                "solution": "private restricts access within class only."
+                            }
+                        ]
+                    },
+                    {
+                        "Level": "Medium",
+                        "Questions": []
+                    },
+                    {
+                        "Level": "Hard",
+                        "Questions": []
+                    }
+                ]
+            },
+             {
+                "ChapterNumber": 3,
+                "Difficulty": [
+                    {
+                        "Level": "easy",
+                        "Questions": []
+                    },
+                    {
+                        "Level": "medium",
+                        "Questions": []
+                    },
+                    {
+                        "Level": "hard",
+                        "Questions": []
+                    }
+                ]
+            }
+        ]
+    }
+]
