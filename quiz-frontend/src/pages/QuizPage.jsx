@@ -10,6 +10,7 @@ import EndTestBtn from "../components/buttons/EndTestBtn.jsx";
 import NextBtn from "../components/buttons/NextBtn.jsx";
 import { SecondsToString } from "../utils/SeondsToMinute.js";
 import PauseTestBtn from "../components/buttons/PauseTestBtn.jsx";
+import ResultStatusDisplay from '../components/ResultStatusDisplay.jsx';
 
 export default function QuizPage() {
 
@@ -28,6 +29,7 @@ export default function QuizPage() {
         testId = ''
     } = testConfig;
 
+    //  setNumOfQuestionsState, 
     const [numOfQuestionsState, setNumOfQuestionsState] = useState(0);
     const [timeTakenState, setTimeTakenState] = useState(0);
     const [correctAnswers, setCorrectAnswers] = useState(0);
@@ -38,6 +40,7 @@ export default function QuizPage() {
     const [answers, setAnswers] = useState({});
     const [data, setData] = useState([]);
     const [isResumed, setIsResumed] = useState(false);
+    const [currentStatus, setCurrentStatus] = useState('all');
 
     // ⏱ Timer (disable in result page)
     useEffect(() => {
@@ -49,7 +52,7 @@ export default function QuizPage() {
         return () => clearInterval(interval);
     }, [isResultPage]);
 
-    // 🔥 Load from localStorage
+    // Load from localStorage
     useEffect(() => {
         const existingData = JSON.parse(localStorage.getItem("quiz")) || [];
         const found = existingData.find(item => item.quizId === testId);
@@ -60,7 +63,7 @@ export default function QuizPage() {
                 const updated = existingData.filter(item => item.quizId !== testId);
                 localStorage.setItem("quiz", JSON.stringify(updated));
             }
-
+            
             setNumOfQuestionsState(found.totalQuestions);
             setTimeTakenState(found.timeTaken);
             setCorrectAnswers(found.correctAnswers);
@@ -191,6 +194,16 @@ export default function QuizPage() {
         }
     }
 
+    // Filter question indices based on current status
+    const filteredIndices = data
+        .map((q, i) => ({ index: i, status: answers[q.id]?.status }))
+        .filter(item => {
+            if (currentStatus === 'all') return true;
+            if (currentStatus === 'skip') return item.status === 'skip' || item.status === 'skipped';
+            return item.status === currentStatus;
+        })
+        .map(item => item.index);
+
     return (
          <>
            {isResultPage ? null : <Quiz_Nav title={`${subject} - ${testName}`} />}
@@ -198,20 +211,24 @@ export default function QuizPage() {
 
                 <div className="w-full lg:w-[30%] md:w-full">
 
-                    <StatusDisplay />
+                    {/* Return the interactive status display if result page for the filer option */}
+                    {isResultPage ? 
+                        <ResultStatusDisplay currentStatus={currentStatus} setCurrentStatus={setCurrentStatus} /> : 
+                        <StatusDisplay/>
+                    }
 
                     <div className="bg-neutral-primary-soft block h-[max-content] w-full px-2 py-5 border border-default rounded-base shadow-xs">
                         <h5 className="mb-1 text-2xl font-semibold tracking-tight text-heading leading-8">Question : </h5>
                         <div className="w-full py-4 flex flex-nowrap md:flex-wrap overflow-x-auto md:overflow-x-hidden md:overflow-y-auto h-[max-content] md:h-[max-content]">
 
-                            {Array.from({ length: numOfQuestionsState }, (_, i) => (
-                                <div key={i} className="flex-shrink-0 md:flex-shrink flex items-center px-2 py-2">
+                            {filteredIndices.map((actualIndex) => (
+                                <div key={actualIndex} className="flex-shrink-0 md:flex-shrink flex items-center px-2 py-2">
                                     <button className="cursor-pointer">
                                         <span className={`h-10 w-10 rounded-full flex items-center justify-center text-sm
-                                            ${i == questionNumber ? 'bg-brand' : badgeColor(i)}`}
-                                            onClick={() => { setQuestionNumber(i) }}
+                                            ${actualIndex == questionNumber ? 'bg-brand' : badgeColor(actualIndex)}`}
+                                            onClick={() => setQuestionNumber(actualIndex)}
                                         >
-                                            {i + 1}
+                                            {actualIndex + 1}
                                         </span>
                                     </button>
                                 </div>
@@ -233,10 +250,10 @@ export default function QuizPage() {
                         </div>
 
                         <div className="flex items-center gap-6">
-                            {questionNumber > 0 && <PreviousBtn setQuestionNumber={setQuestionNumber} />}
+                            {filteredIndices.length > 0 && <PreviousBtn setQuestionNumber={setQuestionNumber} questionNumber={questionNumber} filteredIndices={filteredIndices} />}
                             {questionNumber < data.length - 1 && answers[currentQuestion.id]?.status == "unvisited" &&
                                 <SkipBtn setQuestionNumber={setQuestionNumber} answers={answers} id={data[questionNumber].id} />}
-                            {questionNumber < data.length - 1 && <NextBtn setQuestionNumber={setQuestionNumber} />}
+                            {filteredIndices.length > 0 && <NextBtn setQuestionNumber={setQuestionNumber} questionNumber={questionNumber} filteredIndices={filteredIndices} />}
                         </div>
 
                     </div>
