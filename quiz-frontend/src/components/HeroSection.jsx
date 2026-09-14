@@ -90,7 +90,7 @@ export default function HeroSection() {
 
 
            {/* Paused Tests */}
-           <PausedTests />
+           <PausedTests PageStatus="home" />
 
             {/* Weekly Performance Section */}
             <div className='mt-8 mb-8'>

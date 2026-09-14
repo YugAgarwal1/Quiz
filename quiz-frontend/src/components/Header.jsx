@@ -21,13 +21,13 @@ export default function Header({activePage}) {
         { id: 'home', label: 'Home', loc: '' },
         { id: 'practise', label: 'Practise', loc: 'practise' },
         { id: 'customized', label: 'Customized', loc: 'customized' },
-        { id: 'profile', label: 'Profile', loc: 'profile' }
+        { id: 'apply-code', label: 'ApplyCode', loc: 'apply-code' }
     ];
     const bottomNavSvg = [
         { id: 'home', svg: '<i class="fa-light fa-house"></i>' },
         { id: 'practise', svg: '<i class="fa-light fa-book"></i>' },
         { id: 'customized', svg: '<i class="fa-light fa-gear"></i>' },
-        { id: 'profile', svg: '<i class="fa-light fa-user"></i>' }
+        { id: 'apply-code', svg: '<i class="fa-light fa-key"></i>' }
     ]
     const navigate = useNavigate();
     return (
