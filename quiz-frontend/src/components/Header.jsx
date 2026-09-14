@@ -12,16 +12,16 @@ export default function Header({activePage}) {
     const semOptions = ['Sem VII', 'Sem VIII', 'Sem IX'];
 
     const navItems = [
-        { id: 'home', label: 'Home' },
-        { id: 'practise', label: 'Practise' },
-        { id: 'customized', label: 'Customized' },
-        { id: 'apply-code', label: 'Apply Code' }
+        { id: 'home', label: 'Home', loc: '' },
+        { id: 'practise', label: 'Practise', loc: 'practise' },
+        { id: 'customized', label: 'Customized', loc: 'customized' },
+        { id: 'apply-code', label: 'Apply Code', loc: 'apply-code' }
     ];
     const bottomNavItems = [
-        { id: 'home', label: 'Home' },
-        { id: 'practise', label: 'Practise' },
-        { id: 'customized', label: 'Customized' },
-        { id: 'profile', label: 'Profile' }
+        { id: 'home', label: 'Home', loc: '' },
+        { id: 'practise', label: 'Practise', loc: 'practise' },
+        { id: 'customized', label: 'Customized', loc: 'customized' },
+        { id: 'profile', label: 'Profile', loc: 'profile' }
     ];
     const bottomNavSvg = [
         { id: 'home', svg: '<i class="fa-light fa-house"></i>' },
@@ -52,7 +52,7 @@ export default function Header({activePage}) {
                                     onClick={(e) => {
                                         e.preventDefault();
                                         setActiveItem(item.id);
-                                        navigate(`/${item.id}`)
+                                        navigate(`/${item.loc}`)
                                     }}
                                     className={`px-3 py-2 rounded transition ${activeItem === item.id
                                             ? "bg-red-500 text-white"
@@ -189,7 +189,7 @@ export default function Header({activePage}) {
                             return (
                                 <button
                                     key={item.id}
-                                    onClick={() => setActiveItem(item.id)}
+                                    onClick={() => {setActiveItem(item.id); navigate("/" + item.loc)}}
                                     className={`flex flex-col items-center justify-center ${activeItem === item.id
                                             ? "bg-red-500 text-white"
                                             : "text-gray-500"

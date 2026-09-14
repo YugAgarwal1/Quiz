@@ -5,13 +5,90 @@
         "Chapters": [
             {
                 "ChapterNumber": 1,
-                "ChapterName": "Introduction to Java",
-                "ChapterDescription": "This chapter covers the Introduction to Java"
+                "ChapterName": "Java Virtual Machine and Runtime Architecture",
+                "ChapterDescription": "This chapter covers JVM architecture, class loading, bytecode execution, runtime memory areas, garbage collection, JIT compilation and Java performance optimization"
             },
             {
                 "ChapterNumber": 2,
-                "ChapterName": "Java Basics",
-                "ChapterDescription": "This chapter covers the basics of Java"
+                "ChapterName": "Multithreading and Concurrent Programming",
+                "ChapterDescription": "This chapter covers threads, synchronization, locks, executors, thread pools, concurrent collections, atomic operations, race conditions and advanced concurrency patterns"
+            },
+            {
+                "ChapterNumber": 3,
+                "ChapterName": "Java Networking and Distributed Communication",
+                "ChapterDescription": "This chapter covers socket programming, TCP and UDP communication, client-server architecture, URL connections, network protocols and distributed communication using Java"
+            },
+            {
+                "ChapterNumber": 4,
+                "ChapterName": "Servlets, JSP and Enterprise Web Components",
+                "ChapterDescription": "This chapter covers servlet lifecycle, request and response processing, sessions, cookies, filters, listeners, JSP architecture and enterprise web application development"
+            },
+            {
+                "ChapterNumber": 5,
+                "ChapterName": "Spring Framework and Enterprise Application Architecture",
+                "ChapterDescription": "This chapter covers dependency injection, inversion of control, Spring Boot, REST controllers, middleware, database integration, security and scalable enterprise application architecture"
+            }
+        ]
+    },
+    {
+        "Subject": "Frontend",
+        "SubjectID": "2",
+        "Chapters": [
+            {
+                "ChapterNumber": 1,
+                "ChapterName": "Web Fundamentals and HTML5",
+                "ChapterDescription": "This chapter covers how the web works, HTTP basics, HTML5 document structure, semantic elements, forms, tables and multimedia"
+            },
+            {
+                "ChapterNumber": 2,
+                "ChapterName": "CSS Layout and Responsive Design",
+                "ChapterDescription": "This chapter covers CSS selectors, box model, positioning, Flexbox, Grid, responsive layouts, media queries and modern UI styling"
+            },
+            {
+                "ChapterNumber": 3,
+                "ChapterName": "JavaScript and DOM Manipulation",
+                "ChapterDescription": "This chapter covers JavaScript fundamentals, functions, objects, events, DOM manipulation, form validation and asynchronous programming"
+            },
+            {
+                "ChapterNumber": 4,
+                "ChapterName": "Modern Frontend Frameworks",
+                "ChapterDescription": "This chapter covers component-based development, state management, props, routing, lifecycle methods and scalable frontend application architecture"
+            },
+            {
+                "ChapterNumber": 5,
+                "ChapterName": "Frontend APIs and Web Application Integration",
+                "ChapterDescription": "This chapter covers REST APIs, Fetch API, JSON, asynchronous requests, authentication, error handling and integrating frontend applications with backend services"
+            }
+        ]
+    },
+    {
+        "Subject": "Backend",
+        "SubjectID": "3",
+        "Chapters": [
+            {
+                "ChapterNumber": 1,
+                "ChapterName": "Server Architecture and Backend Fundamentals",
+                "ChapterDescription": "This chapter covers client-server architecture, web servers, application servers, HTTP requests, responses and backend application structure"
+            },
+            {
+                "ChapterNumber": 2,
+                "ChapterName": "RESTful API Development",
+                "ChapterDescription": "This chapter covers REST architecture, API endpoints, HTTP methods, status codes, request handling, response formats and advanced API design principles"
+            },
+            {
+                "ChapterNumber": 3,
+                "ChapterName": "Database Management and ORM",
+                "ChapterDescription": "This chapter covers relational databases, SQL queries, database schemas, relationships, transactions, indexing and Object Relational Mapping"
+            },
+            {
+                "ChapterNumber": 4,
+                "ChapterName": "Authentication, Authorization and Security",
+                "ChapterDescription": "This chapter covers authentication, authorization, sessions, JWT, password security, access control, encryption and common web security vulnerabilities"
+            },
+            {
+                "ChapterNumber": 5,
+                "ChapterName": "Backend Architecture and Deployment",
+                "ChapterDescription": "This chapter covers middleware, service layers, error handling, logging, caching, scalability, testing, containerization and deployment of backend applications"
             }
         ]
     }

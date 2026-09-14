@@ -10,7 +10,7 @@ export default function StartModal({ modalOpen, setModalOpen, selectedChapter, s
             }else if(difficulty.toLowerCase() === 'medium'){
                 return 25;
             }else if(difficulty.toLowerCase() === 'hard'){
-                return 25;
+                return 35;
             }
     }
     function handleModalStart(e) {

@@ -35,14 +35,14 @@ export default function SubjectCard({subject, chapters, state, percentage}){
                                     </div>
                                 </div>
                                 {/* Progress details */}
-                                <div>
+                                {/* <div>
                                     <div class="flex justify-between mb-1">
                                         <span class="text-sm font-medium text-body">{percentage}%</span>
                                     </div>
                                     <div class="w-full bg-neutral-quaternary rounded-full h-2">
                                         <div class="bg-[var(--primary-red)] h-2 rounded-full" style={{width: `${percentage}%`}}></div>
                                     </div>
-                                </div>
+                                </div> */}
                             </div>
          </button>
       </>

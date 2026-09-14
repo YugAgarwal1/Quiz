@@ -182,7 +182,8 @@ export default function QuizPage() {
             timeTaken: timeTakenState,
             questionNumber,
             currentQuestion,
-            status
+            status,
+            testName
         };
 
         storeToLocalStorage(obj);
@@ -206,7 +207,7 @@ export default function QuizPage() {
 
     return (
          <>
-           {isResultPage ? null : <Quiz_Nav title={`${subject} - ${testName}`} />}
+           {isResultPage ? null : <Quiz_Nav title={`${subject} - ${testName}`} endTestOnPause={endTestObject}/>}
             <div className="w-full px-2 py-4 gap-4 flex flex-col lg:flex-row md:flex-col lg:px-10 md:px-5">
 
                 <div className="w-full lg:w-[30%] md:w-full">

@@ -107,7 +107,7 @@ export default function SyllabusPage() {
                     {/* RIGHT SECTION (30% on desktop) */}
                     <div className={`w-full lg:w-[30%] ${getSectionClass('saved')} animate-in fade-in slide-in-from-bottom-4 duration-500`}>
                         <div className='w-full'>
-                            <PausedTests />
+                            <PausedTests subjectFilter={formattedSubject} />
                             <UpcomingTest />
                         </div>
                     </div>

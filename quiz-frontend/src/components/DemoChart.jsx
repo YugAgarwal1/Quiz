@@ -67,7 +67,7 @@ export const DemoChart=()=>{
     }, []);
 
     return (
-        <div className="w-full h-full">
+        <div className="w-full h-[max-content]">
             <Chart type="bar" data={chartData} options={chartOptions} />
         </div>
     );

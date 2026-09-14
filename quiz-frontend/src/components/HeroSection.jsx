@@ -103,7 +103,7 @@ export default function HeroSection() {
                 {/* Charts */}
                 <div className='flex justify-start gap-6 flex-wrap'>
                     {/* Progress Chart */}
-                    <div className="rounded-md border bg-white transition-all duration-200 border-gray-200 shadow-sm lg:w-[45%] h-96 md:w-1/2 px-10 py-10">
+                    <div className="rounded-md border bg-white transition-all duration-200 border-gray-200 shadow-sm lg:w-[100%] h-96 md:w-[100%] sm:w-[100%] px-10 py-10 max-h-[max-content]">
                         {/* Title of chart */}
                         <div className="flex items-center gap-2 mb-4 sm:mb-5">
                             <FontAwesomeIcon icon={faChartArea} className='text-xl sm:text-2xl text-[var(--primary-red)]' />
@@ -114,7 +114,7 @@ export default function HeroSection() {
                     </div>
 
                     {/* Accuracy by Subject chart */}
-                    <div className="rounded-md border bg-white transition-all duration-200 border-gray-200 shadow-sm lg:w-[45%] h-96 md:w-1/2 px-10 py-10">
+                    <div className="rounded-md border bg-white transition-all duration-200 border-gray-200 shadow-sm lg:w-[100%] h-[max-content] md:w-[100%] sm:w-[100%] px-10 py-10">
                         {/* Title of chart */}
                         <div className="flex items-center gap-2 mb-4 sm:mb-5">
                             <FontAwesomeIcon icon={faChartArea} className='text-xl sm:text-2xl text-[var(--primary-red)]' />
@@ -122,8 +122,8 @@ export default function HeroSection() {
                         </div>
                         {/* Chart - > No Data Available */}
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4">
-                            <div className="w-full flex flex-col items-center justify-center py-12 text-center md:col-span-2 lg:col-span-3">
-                                <div className="w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center mb-4">
+                            <div className="w-full flex flex-col items-center justify-center py-12 text-center md:col-span-2 lg:col-span-3 h-[max-content]">
+                                <div className="w-16 h-[max-content] rounded-full bg-gray-100 flex items-center justify-center mb-4">
                                     <FontAwesomeIcon icon={faChartArea} className='text-3xl text-gray-400' />
                                 </div>
                                 <p className="text-gray-600 font-medium">No Data Available</p>
