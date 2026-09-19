@@ -16,6 +16,7 @@
     "@tailwindcss/postcss": "^4",
     "@tailwindcss/vite": "^4",
     "chart.js": "^4.5.1",
+    "esbuild": "^0.27.7",
     "flowbite": "^4.0.1",
     "font-awesome": "^4.7.0",
     "postcss": "^8",
