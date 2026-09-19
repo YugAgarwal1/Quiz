@@ -8,9 +8,8 @@ import UpcomingTest from './UpcomingTest.jsx';
 export default function HeroSection() {
     return (
         <div className="flex flex-col min-h-screen px-4 sm:px-8 lg:px-20">
-
             {/* Welcome Section */}
-            <div className="mt-10 lg:mt-16">
+            <div className="mt-24 lg:mt-16">
                 <h1 className="text-2xl sm:text-3xl lg:text-4xl font-semibold text-heading">
                     Welcome Back 👋
                 </h1>
@@ -60,7 +59,7 @@ export default function HeroSection() {
                             {/* Title */}
                             <p className="text-body">Total Time Spent</p>
                             {/* Time */}
-                            <p className="text-black text-2xl font-medium">
+                            <p className="text-black text-xl font-medium lg:text-2xl">
                                 18 : 06 : 03
                             </p>
                         </div>
@@ -77,7 +76,7 @@ export default function HeroSection() {
                             {/* Title */}
                             <p className="text-body">Practise Test Given</p>
                             {/* Time */}
-                            <p className="text-black text-2xl font-medium">
+                            <p className="text-black text-xl lg:text-2xl font-medium">
                                 5
                             </p>
                         </div>
@@ -114,7 +113,7 @@ export default function HeroSection() {
                     </div>
 
                     {/* Accuracy by Subject chart */}
-                    <div className="rounded-md border bg-white transition-all duration-200 border-gray-200 shadow-sm lg:w-[100%] h-[max-content] md:w-[100%] sm:w-[100%] px-10 py-10">
+                    <div className="rounded-md border bg-white transition-all duration-200 border-gray-200 shadow-sm lg:w-[100%] h-[max-content] md:w-[100%] px-10 py-10 w-full">
                         {/* Title of chart */}
                         <div className="flex items-center gap-2 mb-4 sm:mb-5">
                             <FontAwesomeIcon icon={faChartArea} className='text-xl sm:text-2xl text-[var(--primary-red)]' />

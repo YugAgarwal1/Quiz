@@ -146,7 +146,7 @@ export default function Header({activePage}) {
                                             e.preventDefault();
                                             setActiveItem(item.id);
                                             setIsMobileMenuOpen(false);
-                                            navigate(`/${item.id}`)
+                                            navigate(`/${item.loc}`)
                                         }}
                                         className={`block p-2 rounded ${activeItem === item.id
                                                 ? "bg-red-500 text-white"
