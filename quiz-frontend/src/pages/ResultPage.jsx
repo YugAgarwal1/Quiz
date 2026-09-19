@@ -62,8 +62,9 @@ export default function ResultPage() {
                     {/* RIGHT SECTION - Content (70% on desktop) */}
                     <div className='w-full lg:w-[100%]'>
 
-                        {/* Analytics Section */}
-                        <div className={`${getSectionClass('analytics')} animate-in fade-in slide-in-from-bottom-4 duration-500`}>
+                        {activeTab == "analytics" 
+                        ? 
+                        (<div className={`${getSectionClass('analytics')} animate-in fade-in slide-in-from-bottom-4 duration-500`}>
                             <div className='flex flex-col w-full p-5'>
                                 <h5 className="text-2xl sm:text-2xl lg:text-3xl font-semibold text-heading mb-6">
                                     Analytics
@@ -72,18 +73,17 @@ export default function ResultPage() {
                                     <p className="text-xl text-gray-600">This is an analytics page</p>
                                 </div>
                             </div>
-                        </div>
-
-                        {/* Quiz Section */}
-                        <div className={`${getSectionClass('quiz')} animate-in fade-in slide-in-from-bottom-4 duration-500`}>
+                        </div>)
+                        :  
+                        (<div className={`${getSectionClass('quiz')} animate-in fade-in slide-in-from-bottom-4 duration-500`}>
                             <div className='flex flex-col w-full p-5'>
                                 <h5 className="text-2xl sm:text-2xl lg:text-3xl font-semibold text-heading mb-6">
                                     Quiz
                                 </h5>
                                 <QuizPage />
                             </div>
-                        </div>
-
+                        </div>)
+                        }
                     </div>
                 </div>
             </div>
