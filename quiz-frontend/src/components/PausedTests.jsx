@@ -55,9 +55,9 @@ export default function PausedTests({ subjectFilter = null, PageStatus = "home" 
                     </h5>
                 </div>
                 {/* Tests List */}
-                <div className={`grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4 ${(PageStatus === 'home' ? 'lg:grid-cols-3' : 'lg:grid-cols-1')}`}>
+                <div className={`grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4 ${PageStatus === 'home' ? 'lg:grid-cols-3' : 'lg:grid-cols-1'}`}>
                     {pausedTests.length === 0 ? (
-                        <div className="w-full flex flex-col items-center justify-center py-12 text-center sm:col-span-2 lg:col-span-3">
+                        <div className="w-full flex flex-col items-center justify-center py-12 text-center">
                             <div className="w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center mb-4">
                                 <FontAwesomeIcon icon={faPause} className='text-3xl text-gray-400' />
                             </div>
