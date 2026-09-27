@@ -188,6 +188,10 @@ export default function QuizPage() {
 
         storeToLocalStorage(obj);
 
+        // Increase the practise test given count
+        const practiseTestGiven = JSON.parse(localStorage.getItem('practise_test_given')) || 0;
+        localStorage.setItem('practise_test_given', JSON.stringify(practiseTestGiven + 1));
+
         if (status === "completed") {
             navigate(`/practise/${subject}/test/${testId}/result`);
         } else {

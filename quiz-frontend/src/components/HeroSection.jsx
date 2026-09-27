@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Logo from '../images/logo.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClock, faBook, faCalendar, faPause, faChartArea } from '@fortawesome/free-solid-svg-icons';
 import { DemoChart } from '../components/DemoChart.jsx';
 import PausedTests from './PausedTests.jsx';
 import UpcomingTest from './UpcomingTest.jsx';
+import { TimerContext } from '../App';
+
 export default function HeroSection() {
+    const { timerDisplay } = useContext(TimerContext);
     return (
         <div className="flex flex-col min-h-screen px-4 sm:px-8 lg:px-20">
             {/* Welcome Section */}
@@ -60,7 +63,7 @@ export default function HeroSection() {
                             <p className="text-body">Total Time Spent</p>
                             {/* Time */}
                             <p className="text-black text-xl font-medium lg:text-2xl">
-                                18 : 06 : 03
+                                {timerDisplay}
                             </p>
                         </div>
                     </div>
@@ -77,7 +80,7 @@ export default function HeroSection() {
                             <p className="text-body">Practise Test Given</p>
                             {/* Time */}
                             <p className="text-black text-xl lg:text-2xl font-medium">
-                                5
+                                {localStorage.getItem('practise_test_given') || 0}
                             </p>
                         </div>
                     </div>
