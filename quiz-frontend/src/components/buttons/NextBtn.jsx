@@ -1,9 +1,13 @@
-export default function NextBtn({ setQuestionNumber, questionNumber, filteredIndices }) {
+export default function NextBtn({ setQuestionNumber, questionNumber, filteredIndices, onNavigate, currentQuestionId, timeSpent }) {
     const currentIndex = filteredIndices.indexOf(questionNumber);
     const hasNext = currentIndex < filteredIndices.length - 1;
 
     const handleNext = () => {
         if (hasNext) {
+            // Call the navigation handler to update time spent
+            if (onNavigate) {
+                onNavigate(currentQuestionId, timeSpent);
+            }
             setQuestionNumber(filteredIndices[currentIndex + 1]);
         }
     };

@@ -41,6 +41,7 @@ export default function QuizPage() {
     const [data, setData] = useState([]);
     const [isResumed, setIsResumed] = useState(false);
     const [currentStatus, setCurrentStatus] = useState('all');
+    const [questionStartTime, setQuestionStartTime] = useState(Date.now());
 
     // ⏱ Timer (disable in result page)
     useEffect(() => {
@@ -88,12 +89,13 @@ export default function QuizPage() {
             const questions = GiveSetOfQuestions(subject, chapters, difficulty, numOfQuestionsState);
             setData(questions);
         }
-    }, [subject, difficulty, numOfQuestionsState, isResumed]);
+    }, [subject, chapters, difficulty, numOfQuestionsState, isResumed]);
 
     // Set current question
     useEffect(() => {
         if (data.length > 0) {
             setCurrentQuestion(data[questionNumber]);
+            setQuestionStartTime(Date.now()); // Reset timer for new question
         }
     }, [data, questionNumber]);
 
@@ -121,6 +123,7 @@ export default function QuizPage() {
         }
 
         const status = currentQuestion.answer == option ? "correct" : "incorrect";
+        const timeSpent = Math.round((Date.now() - questionStartTime) / 1000); // Convert to seconds
 
         if (status == "correct") {
             setCorrectAnswers(prev => prev + 1);
@@ -133,9 +136,34 @@ export default function QuizPage() {
             ...prev,
             [currentQuestion.id]: {
                 selectedOption: option,
-                status: status
+                status: status,
+                timeSpent: timeSpent
             }
         }));
+    }
+
+    function handleSkip(id, timeSpent) {
+        setAnswers(prev => ({
+            ...prev,
+            [id]: {
+                selectedOption: null,
+                status: "skip",
+                timeSpent: timeSpent
+            }
+        }));
+    }
+
+    function handleQuestionNavigation(currentQuestionId, timeSpent) {
+        if (answers[currentQuestionId]?.status === "unvisited") {
+            setAnswers(prev => ({
+                ...prev,
+                [currentQuestionId]: {
+                    ...prev[currentQuestionId],
+                    status: "skip",
+                    timeSpent: timeSpent
+                }
+            }));
+        }
     }
 
     function selectedColor(option) {
@@ -168,10 +196,25 @@ export default function QuizPage() {
     }
 
     function endTestObject(status) {
+        // Handle unvisited questions - mark them as skipped with estimated time spent
+        const finalAnswers = { ...answers };
+        const answeredQuestions = Object.values(finalAnswers).filter(a => a.status !== "unvisited").length;
+        const avgTimePerQuestion = answeredQuestions > 0 ? Math.round(timeTakenState / answeredQuestions) : 0;
+        
+        data.forEach((question) => {
+            if (!finalAnswers[question.id] || finalAnswers[question.id].status === "unvisited") {
+                finalAnswers[question.id] = {
+                    selectedOption: null,
+                    status: "skip",
+                    timeSpent: avgTimePerQuestion // Estimate time for skipped questions
+                };
+            }
+        });
+
         const obj = {
             quizId: testId,
             score,
-            answers,
+            answers: finalAnswers,
             subject,
             chapters,
             data,
@@ -255,10 +298,10 @@ export default function QuizPage() {
                         </div>
 
                         <div className="flex items-center gap-6">
-                            {filteredIndices.length > 0 && <PreviousBtn setQuestionNumber={setQuestionNumber} questionNumber={questionNumber} filteredIndices={filteredIndices} />}
+                            {filteredIndices.length > 0 && <PreviousBtn setQuestionNumber={setQuestionNumber} questionNumber={questionNumber} filteredIndices={filteredIndices} onNavigate={handleQuestionNavigation} currentQuestionId={currentQuestion.id} timeSpent={Math.round((Date.now() - questionStartTime) / 1000)} />}
                             {questionNumber < data.length - 1 && answers[currentQuestion.id]?.status == "unvisited" &&
-                                <SkipBtn setQuestionNumber={setQuestionNumber} answers={answers} id={data[questionNumber].id} />}
-                            {filteredIndices.length > 0 && <NextBtn setQuestionNumber={setQuestionNumber} questionNumber={questionNumber} filteredIndices={filteredIndices} />}
+                                <SkipBtn setQuestionNumber={setQuestionNumber} onSkip={handleSkip} id={data[questionNumber].id} timeSpent={Math.round((Date.now() - questionStartTime) / 1000)} />}
+                            {filteredIndices.length > 0 && <NextBtn setQuestionNumber={setQuestionNumber} questionNumber={questionNumber} filteredIndices={filteredIndices} onNavigate={handleQuestionNavigation} currentQuestionId={currentQuestion.id} timeSpent={Math.round((Date.now() - questionStartTime) / 1000)} />}
                         </div>
 
                     </div>

@@ -5,13 +5,6 @@ export default function QuestionWiseChart({title, labels, data}) {
     const chartRef = useRef(null);
     const chartInstance = useRef(null);
 
-    // Data points matching your image
-    const chartData = {
-        correct: 3,
-        wrong: 7,
-        skipped: 0
-    };
-
     useEffect(() => {
         const ctx = chartRef.current.getContext('2d');
         
@@ -54,7 +47,7 @@ export default function QuestionWiseChart({title, labels, data}) {
                 chartInstance.current.destroy();
             }
         };
-    }, []);
+    }, [JSON.stringify(data)]);
 
     return (
         <div className="max-w-md w-full bg-white border border-gray-200 rounded-2xl shadow-sm p-6 mb-4">

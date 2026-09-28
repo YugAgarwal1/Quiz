@@ -1,4 +1,4 @@
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import Header from '../components/Header.jsx';
 import PausedTests from '../components/PausedTests.jsx';
@@ -11,13 +11,15 @@ import { GetSubjectSyllabus } from '../utils/Questions.js';
 
 export default function SyllabusPage() {
     const { subject } = useParams();
-    const navigate = useNavigate();
     const [activeTab, setActiveTab] = useState('test');
     const [modalOpen, setModalOpen] = useState(false);
     const [selectedChapter, setSelectedChapter] = useState([]);
     const [subjectSyllabus, setSubjectSyllabus] = useState([]);
-    const [difficulty, setDifficulty] = useState('' || 'easy');
-    const [testName, setTestName] = useState('');
+    const [analyticsData, setAnalyticsData] = useState({
+        questionPerformance: [0, 0, 0],
+        timeWiseBreakdown: [0, 0, 0],
+        questionWiseAverageTime: [0, 0, 0]
+    });
 
     const tabs = [
         { id: 'test', name: 'Test' },
@@ -41,11 +43,88 @@ export default function SyllabusPage() {
         setSubjectSyllabus(GetSubjectSyllabus(subject));
     }, [subject]);
 
+    useEffect(() => {
+        const existingData = JSON.parse(localStorage.getItem("quiz")) || [];
+        const formattedSubjectName = subject
+            .replace(/-/g, ' ')
+            .replace(/\b\w/g, l => l.toUpperCase());
+        
+        // Filter tests for the current subject only
+        const subjectTests = existingData.filter(item => 
+            item.status === "completed" && item.subject === formattedSubjectName
+        );
+        
+        // Calculate analytics for this subject
+        const calculatedAnalytics = calculateAnalytics(subjectTests);
+        setAnalyticsData(calculatedAnalytics);
+    }, [subject]);
+
+    const calculateAnalytics = (tests) => {
+        let totalCorrect = 0, totalIncorrect = 0, totalSkipped = 0;
+        let correctTime = 0, incorrectTime = 0, skippedTime = 0;
+        let correctCount = 0, incorrectCount = 0, skippedCount = 0;
+
+        tests.forEach(test => {
+            const answers = test.answers || {};
+            Object.values(answers).forEach(answer => {
+                const timeSpent = answer.timeSpent || 0;
+                
+                if (answer.status === 'correct') {
+                    totalCorrect++;
+                    correctTime += timeSpent;
+                    correctCount++;
+                } else if (answer.status === 'incorrect') {
+                    totalIncorrect++;
+                    incorrectTime += timeSpent;
+                    incorrectCount++;
+                } else if (answer.status === 'skip' || answer.status === 'skipped') {
+                    totalSkipped++;
+                    skippedTime += timeSpent;
+                    skippedCount++;
+                }
+            });
+        });
+
+        // Calculate averages
+        const avgCorrectTime = correctCount > 0 ? Math.round(correctTime / correctCount) : 0;
+        const avgIncorrectTime = incorrectCount > 0 ? Math.round(incorrectTime / incorrectCount) : 0;
+        const avgSkippedTime = skippedCount > 0 ? Math.round(skippedTime / skippedCount) : 0;
+
+        // Use test time taken if no individual question times are available
+        if (correctTime === 0 && incorrectTime === 0 && skippedTime === 0 && tests.length > 0) {
+            const totalTime = tests.reduce((sum, test) => sum + (test.timeTaken || 0), 0);
+            const answeredQuestions = tests.reduce((sum, test) => {
+                const answers = test.answers || {};
+                return sum + Object.values(answers).filter(a => a.status !== 'skip' && a.status !== 'skipped' && a.status !== 'unvisited').length;
+            }, 0);
+            
+            if (answeredQuestions > 0) {
+                const avgTimePerQuestion = Math.round(totalTime / answeredQuestions);
+                correctTime = totalCorrect * avgTimePerQuestion;
+                incorrectTime = totalIncorrect * avgTimePerQuestion;
+                skippedTime = totalSkipped * avgTimePerQuestion;
+                
+                // Update averages with the calculated values
+                return {
+                    questionPerformance: [totalCorrect, totalIncorrect, totalSkipped],
+                    timeWiseBreakdown: [correctTime, incorrectTime, skippedTime],
+                    questionWiseAverageTime: [avgTimePerQuestion, avgTimePerQuestion, avgTimePerQuestion]
+                };
+            }
+        }
+
+        return {
+            questionPerformance: [totalCorrect, totalIncorrect, totalSkipped],
+            timeWiseBreakdown: [correctTime, incorrectTime, skippedTime],
+            questionWiseAverageTime: [avgCorrectTime, avgIncorrectTime, avgSkippedTime]
+        };
+    };
+
     return (
         <>
             {modalOpen && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
-                    <StartModal modalOpen={modalOpen} setModalOpen={setModalOpen} selectedChapter={selectedChapter} setTestName={setTestName} setDifficulty={setDifficulty} difficulty={difficulty} subject={subject}/>
+                    <StartModal modalOpen={modalOpen} setModalOpen={setModalOpen} selectedChapter={selectedChapter} subject={subject}/>
                 </div>
             )}
 
@@ -124,19 +203,19 @@ export default function SyllabusPage() {
                         <QuestionWiseChart
                             title="Question Performance"
                             labels={['Correct', 'Wrong', 'Skipped']}
-                            data={[3, 7, 0]}
+                            data={analyticsData.questionPerformance}
                         />
 
                         <TimeWiseChart
                             title="Time Wise Breakdown"
                             labels={['Correct', 'Wrong', 'Skipped']}
-                            data={[3, 7, 0]}
+                            data={analyticsData.timeWiseBreakdown}
                         />
 
                         <TimeWiseChart
                             title="Question Wise Average Time"
                             labels={['Correct', 'Wrong', 'Skipped']}
-                            data={[3, 7, 0]}
+                            data={analyticsData.questionWiseAverageTime}
                         />
                     </div>
                 </div>

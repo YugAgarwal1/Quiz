@@ -9,12 +9,82 @@ import ChapterData from '../json/ChapterData.json';
 export default function Practise() {
     const [activeTab, setActiveTab] = useState('subjects');
     const [completedTests, setCompletedTests] = useState([]);
+    const [analyticsData, setAnalyticsData] = useState({
+        questionPerformance: [0, 0, 0],
+        timeWiseBreakdown: [0, 0, 0],
+        questionWiseAverageTime: [0, 0, 0]
+    });
 
     useEffect(() => {
         const existingData = JSON.parse(localStorage.getItem("quiz")) || [];
         const completed = existingData.filter(item => item.status === "completed");
         setCompletedTests(completed);
+        
+        // Calculate analytics from all completed tests
+        const calculatedAnalytics = calculateAnalytics(completed);
+        setAnalyticsData(calculatedAnalytics);
     }, []);
+
+    const calculateAnalytics = (tests) => {
+        let totalCorrect = 0, totalIncorrect = 0, totalSkipped = 0;
+        let correctTime = 0, incorrectTime = 0, skippedTime = 0;
+        let correctCount = 0, incorrectCount = 0, skippedCount = 0;
+
+        tests.forEach(test => {
+            const answers = test.answers || {};
+            Object.values(answers).forEach(answer => {
+                const timeSpent = answer.timeSpent || 0;
+                
+                if (answer.status === 'correct') {
+                    totalCorrect++;
+                    correctTime += timeSpent;
+                    correctCount++;
+                } else if (answer.status === 'incorrect') {
+                    totalIncorrect++;
+                    incorrectTime += timeSpent;
+                    incorrectCount++;
+                } else if (answer.status === 'skip' || answer.status === 'skipped') {
+                    totalSkipped++;
+                    skippedTime += timeSpent;
+                    skippedCount++;
+                }
+            });
+        });
+
+        // Calculate averages
+        const avgCorrectTime = correctCount > 0 ? Math.round(correctTime / correctCount) : 0;
+        const avgIncorrectTime = incorrectCount > 0 ? Math.round(incorrectTime / incorrectCount) : 0;
+        const avgSkippedTime = skippedCount > 0 ? Math.round(skippedTime / skippedCount) : 0;
+
+        // Use test time taken if no individual question times are available
+        if (correctTime === 0 && incorrectTime === 0 && skippedTime === 0 && tests.length > 0) {
+            const totalTime = tests.reduce((sum, test) => sum + (test.timeTaken || 0), 0);
+            const answeredQuestions = tests.reduce((sum, test) => {
+                const answers = test.answers || {};
+                return sum + Object.values(answers).filter(a => a.status !== 'skip' && a.status !== 'skipped' && a.status !== 'unvisited').length;
+            }, 0);
+            
+            if (answeredQuestions > 0) {
+                const avgTimePerQuestion = Math.round(totalTime / answeredQuestions);
+                correctTime = totalCorrect * avgTimePerQuestion;
+                incorrectTime = totalIncorrect * avgTimePerQuestion;
+                skippedTime = totalSkipped * avgTimePerQuestion;
+                
+                // Update averages with the calculated values
+                return {
+                    questionPerformance: [totalCorrect, totalIncorrect, totalSkipped],
+                    timeWiseBreakdown: [correctTime, incorrectTime, skippedTime],
+                    questionWiseAverageTime: [avgTimePerQuestion, avgTimePerQuestion, avgTimePerQuestion]
+                };
+            }
+        }
+
+        return {
+            questionPerformance: [totalCorrect, totalIncorrect, totalSkipped],
+            timeWiseBreakdown: [correctTime, incorrectTime, skippedTime],
+            questionWiseAverageTime: [avgCorrectTime, avgIncorrectTime, avgSkippedTime]
+        };
+    };
 
     const getStatusCounts = (answers) => {
         let correct = 0, incorrect = 0, skipped = 0;
@@ -126,9 +196,9 @@ export default function Practise() {
                         Analytics
                     </h5>
                     <div className="flex justify-between flex-wrap">
-                        <QuestionWiseChart title="Question Performance" labels={['Correct', 'Wrong', 'Skipped']} data={[3, 7, 0]} />
-                        <TimeWiseChart title="Time Wise Breakdown" labels={['Correct', 'Wrong', 'Skipped']} data={[3, 7, 0]} /> 
-                        <TimeWiseChart title="Question Wise Average Time" labels={['Correct', 'Wrong', 'Skipped']} data={[3, 7, 0]} />  
+                        <QuestionWiseChart title="Question Performance" labels={['Correct', 'Wrong', 'Skipped']} data={analyticsData.questionPerformance} />
+                        <TimeWiseChart title="Time Wise Breakdown" labels={['Correct', 'Wrong', 'Skipped']} data={analyticsData.timeWiseBreakdown} /> 
+                        <TimeWiseChart title="Question Wise Average Time" labels={['Correct', 'Wrong', 'Skipped']} data={analyticsData.questionWiseAverageTime} />  
                     </div>
                 </div>
 

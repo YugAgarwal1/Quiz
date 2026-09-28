@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import Logo from '../images/logo.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faClock, faBook, faCalendar, faPause, faChartArea } from '@fortawesome/free-solid-svg-icons';
+import { faClock, faBook, faChartArea } from '@fortawesome/free-solid-svg-icons';
 import { DemoChart } from '../components/DemoChart.jsx';
 import PausedTests from './PausedTests.jsx';
 import UpcomingTest from './UpcomingTest.jsx';

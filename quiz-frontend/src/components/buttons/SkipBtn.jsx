@@ -1,8 +1,9 @@
-export default function SkipBtn({setQuestionNumber, answers, id}) {
+export default function SkipBtn({setQuestionNumber, onSkip, id, timeSpent}) {
     const handleSkip = () => {
         setQuestionNumber(prev => prev + 1);
-        answers[id].selectedOption = null;
-        answers[id].status = "skip"
+        if (onSkip) {
+            onSkip(id, timeSpent);
+        }
     }
     return (
         <>
