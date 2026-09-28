@@ -1,14 +1,27 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import QuizPage from "./QuizPage";
 import Header from '../components/Header.jsx';
+import DetailedAnalytics from '../components/DetailedAnalytics.jsx';
 
 export default function ResultPage() {
+    const { subject, testId } = useParams();
     const [activeTab, setActiveTab] = useState('analytics');
+    const [quizData, setQuizData] = useState(null);
 
     const tabs = [
         { id: 'analytics', name: 'Analytics' },
         { id: 'quiz', name: 'Quiz' }
     ];
+
+    useEffect(() => {
+        // Load quiz data from localStorage
+        const existingData = JSON.parse(localStorage.getItem("quiz")) || [];
+        const found = existingData.find(item => item.quizId === testId);
+        if (found) {
+            setQuizData(found);
+        }
+    }, [testId]);
 
     const getSectionClass = (tabId) => {
         return activeTab === tabId ? 'block md:block' : 'hidden md:block';
@@ -69,9 +82,13 @@ export default function ResultPage() {
                                 <h5 className="text-2xl sm:text-2xl lg:text-3xl font-semibold text-heading mb-6">
                                     Analytics
                                 </h5>
-                                <div className="bg-gray-50 border border-gray-200 rounded-lg p-8 text-center">
-                                    <p className="text-xl text-gray-600">This is an analytics page</p>
-                                </div>
+                                {quizData ? (
+                                    <DetailedAnalytics quizData={quizData} />
+                                ) : (
+                                    <div className="bg-gray-50 border border-gray-200 rounded-lg p-8 text-center">
+                                        <p className="text-xl text-gray-600">Loading analytics...</p>
+                                    </div>
+                                )}
                             </div>
                         </div>)
                         :  
