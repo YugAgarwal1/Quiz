@@ -3,11 +3,14 @@
   "version": "1.0.0",
   "description": "Fullstack Quiz Bird Exam Application with Node.js, SQL, and React",
   "scripts": {
+    "build": "cd quiz-frontend && npm install && npm run build && cd ../quiz-backend && npm install",
+    "start": "cd quiz-backend && npm start",
     "start:backend": "cd quiz-backend && npm start",
     "dev:backend": "cd quiz-backend && npm run dev",
     "start:frontend": "cd quiz-frontend && npm run dev",
     "db:init": "cd quiz-backend && npm run db:init",
     "db:seed": "cd quiz-backend && npm run db:seed",
+    "db:schema": "cd quiz-backend && npm run db:schema",
     "db:reset": "cd quiz-backend && npm run db:reset"
   }
 }

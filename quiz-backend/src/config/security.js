@@ -34,7 +34,7 @@ export const helmetMiddleware = helmet({
       styleSrc: ["'self'", "'unsafe-inline'", 'https://fonts.googleapis.com'],
       fontSrc: ["'self'", 'https://fonts.gstatic.com'],
       imgSrc: ["'self'", 'data:', 'blob:', 'https:'],
-      connectSrc: ["'self'", 'http://localhost:*', 'http://127.0.0.1:*']
+      connectSrc: ["'self'", 'http://localhost:*', 'http://127.0.0.1:*', 'https:']
     }
   },
   crossOriginEmbedderPolicy: false
