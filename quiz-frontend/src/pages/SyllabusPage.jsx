@@ -7,7 +7,7 @@ import ChaptersAccordian from '../components/ChaptersAccordian.jsx';
 import QuestionWiseChart from '../components/Question_Wise_Chart.jsx';
 import TimeWiseChart from '../components/Time_Wise_Chart.jsx';
 import StartModal from '../components/StartModal.jsx';
-import { GetSubjectSyllabus } from '../utils/Questions.js';
+import { GetSubjectSyllabus, FetchSubjectSyllabusFromApi } from '../utils/Questions.js';
 
 export default function SyllabusPage() {
     const { subject } = useParams();
@@ -40,7 +40,11 @@ export default function SyllabusPage() {
     }
 
     useEffect(() => {
-        setSubjectSyllabus(GetSubjectSyllabus(subject));
+        async function loadSyllabus() {
+            const data = await FetchSubjectSyllabusFromApi(subject);
+            setSubjectSyllabus(data || []);
+        }
+        loadSyllabus();
     }, [subject]);
 
     useEffect(() => {
