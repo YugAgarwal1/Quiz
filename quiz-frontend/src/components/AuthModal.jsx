@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext.jsx';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes, faEnvelope, faLock, faUser, faGraduationCap, faShieldHalved } from '@fortawesome/free-solid-svg-icons';
+import { faTimes, faEnvelope, faLock, faUser } from '@fortawesome/free-solid-svg-icons';
 
 export default function AuthModal() {
   const { isAuthModalOpen, authModalMode, openAuthModal, closeAuthModal, login, register } = useAuth();
@@ -35,17 +35,6 @@ export default function AuthModal() {
     }
   };
 
-  const handleQuickFillAdmin = () => {
-    setEmail('admin@quizbird.com');
-    setPassword('Admin@123456');
-    setError('');
-  };
-
-  const handleQuickFillStudent = () => {
-    setEmail('student@quizbird.com');
-    setPassword('Student@123456');
-    setError('');
-  };
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 overflow-y-auto animate-fade-in">
@@ -211,28 +200,7 @@ export default function AuthModal() {
             </button>
           </form>
 
-          {/* Quick Fill Testing Assist */}
-          <div className="mt-6 pt-4 border-t border-gray-100">
-            <p className="text-xs text-gray-400 text-center mb-2 font-medium">1-Click Quick Fill Credentials (Demo):</p>
-            <div className="grid grid-cols-2 gap-2">
-              <button
-                type="button"
-                onClick={handleQuickFillAdmin}
-                className="py-1.5 px-3 bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs font-semibold rounded-lg transition cursor-pointer flex items-center justify-center gap-1"
-              >
-                <FontAwesomeIcon icon={faShieldHalved} className="text-red-500" />
-                Fill Admin
-              </button>
-              <button
-                type="button"
-                onClick={handleQuickFillStudent}
-                className="py-1.5 px-3 bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs font-semibold rounded-lg transition cursor-pointer flex items-center justify-center gap-1"
-              >
-                <FontAwesomeIcon icon={faGraduationCap} className="text-blue-500" />
-                Fill Student
-              </button>
-            </div>
-          </div>
+
         </div>
       </div>
     </div>

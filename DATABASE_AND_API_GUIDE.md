@@ -40,8 +40,8 @@ npm run dev
 | **Administrator** | `admin@quizbird.com` | `Admin@123456` | Full Admin Portal (`/admin`), Question Bank CRUD, User Management, Semesters/Subjects/Chapters CRUD, System Stats |
 | **Student** | `student@quizbird.com` | `Student@123456` | Student Dashboard, Interactive Quizzes, Analytics, Paused/Recent Tests |
 
-> [!TIP]
-> The login modal includes **1-Click Quick Fill buttons** ("Fill Admin" and "Fill Student") for instant demo authentication.
+> [!NOTE]
+> The app is ready for actual users with secure registration and login authentication. Demo quick-fill buttons have been removed for production.
 
 ---
 
