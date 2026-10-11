@@ -26,7 +26,8 @@ import {
   faExchangeAlt,
   faInbox,
   faChartLine,
-  faEye
+  faEye,
+  faSyncAlt
 } from '@fortawesome/free-solid-svg-icons';
 
 export default function AdminDashboard() {
@@ -142,7 +143,8 @@ export default function AdminDashboard() {
     try {
       const res = await api.admin.getUsers({
         search: userSearch,
-        role: selectedRoleFilter
+        role: selectedRoleFilter,
+        limit: 50
       });
       if (res.success) {
         setUsers(res.users);
@@ -203,6 +205,7 @@ export default function AdminDashboard() {
     loadOverview();
     loadAcademics();
     loadSemesterRequests();
+    loadUsers();
   }, []);
 
   useEffect(() => {
@@ -945,6 +948,17 @@ export default function AdminDashboard() {
                   <option value="student">Students</option>
                   <option value="admin">Administrators</option>
                 </select>
+
+                <button
+                  onClick={() => {
+                    loadUsers();
+                    showToast('User list refreshed!');
+                  }}
+                  className="px-3 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold rounded-xl text-xs sm:text-sm transition cursor-pointer flex items-center justify-center gap-1.5"
+                  title="Refresh User List"
+                >
+                  <FontAwesomeIcon icon={faSyncAlt} /> Refresh
+                </button>
 
                 <button
                   onClick={() => {

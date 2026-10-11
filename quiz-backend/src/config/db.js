@@ -25,10 +25,13 @@ let dbInstance;
 try {
   dbInstance = new DatabaseSync(resolvedDbPath);
   
-  // Enable foreign keys
+  // Enable foreign keys and Write-Ahead Logging (WAL) for robust persistence and concurrency
   dbInstance.exec('PRAGMA foreign_keys = ON;');
+  dbInstance.exec('PRAGMA journal_mode = WAL;');
+  dbInstance.exec('PRAGMA synchronous = NORMAL;');
+  dbInstance.exec('PRAGMA busy_timeout = 5000;');
   
-  console.log(`[Database] SQLite connected successfully at: ${resolvedDbPath}`);
+  console.log(`[Database] SQLite connected successfully (WAL mode enabled) at: ${resolvedDbPath}`);
 } catch (error) {
   console.error('[Database] Connection failed:', error);
   process.exit(1);

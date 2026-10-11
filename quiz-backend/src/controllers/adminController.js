@@ -137,20 +137,37 @@ export function getUsers(req, res, next) {
 
     sql += ` GROUP BY u.id ORDER BY u.id DESC `;
 
-    const offset = (Math.max(1, parseInt(page, 10)) - 1) * parseInt(limit, 10);
+    const parsedLimit = Math.min(100, Math.max(1, parseInt(limit, 10) || 50));
+    const parsedPage = Math.max(1, parseInt(page, 10) || 1);
+    const offset = (parsedPage - 1) * parsedLimit;
     sql += ` LIMIT ? OFFSET ? `;
-    params.push(parseInt(limit, 10), offset);
+    params.push(parsedLimit, offset);
 
     const users = db.query(sql, params);
 
-    const totalCountRow = db.get('SELECT COUNT(*) as count FROM users');
+    // Calculate count matching current filters
+    let countSql = `SELECT COUNT(DISTINCT u.id) as count FROM users u WHERE 1=1`;
+    const countParams = [];
+    if (search) {
+      countSql += ` AND (u.name LIKE ? OR u.email LIKE ?) `;
+      countParams.push(`%${search}%`, `%${search}%`);
+    }
+    if (role) {
+      countSql += ` AND u.role = ? `;
+      countParams.push(role);
+    }
+    if (semester_id) {
+      countSql += ` AND u.semester_id = ? `;
+      countParams.push(semester_id);
+    }
+    const totalCountRow = db.get(countSql, countParams);
 
     return res.json({
       success: true,
       users,
       totalUsers: totalCountRow?.count || 0,
-      page: parseInt(page, 10),
-      limit: parseInt(limit, 10)
+      page: parsedPage,
+      limit: parsedLimit
     });
   } catch (error) {
     next(error);

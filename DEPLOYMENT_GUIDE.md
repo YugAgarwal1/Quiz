@@ -45,6 +45,12 @@ Under the **Environment Variables** section, add:
 - Your live website will be available at:
   👉 **`https://quiz-bird.onrender.com`** (or your chosen name)
 
+### ⚠️ Important: Database Persistence on Cloud Hosts (Render Free vs Persistent Disk)
+- **Render Free Tier Ephemeral Disk**: Render Free web services spin down after 15 minutes of inactivity. On wake-up or rebuild, ephemeral containers reset the local filesystem to the Git commit state.
+- **To keep registered users permanently across container restarts**:
+  1. **Render Disk (Recommended on Render)**: Go to your Render Web Service dashboard -> **Disks** -> **Add Disk** (Name: `quizbird-data`, Mount Path: `/opt/render/project/src/quiz-backend/data`, Size: 1GB).
+  2. **Free Cloud Database**: Alternatively, connect to an external free cloud database service (e.g. Turso LibSQL or Supabase) which stores data in the cloud instead of container local storage.
+
 ---
 
 ## ⚡ Alternative Option: Split Hosting (Vercel + Render)
